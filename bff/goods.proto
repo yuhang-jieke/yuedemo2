@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+option go_package ="./cmd";
+
+package sel2pb;
+
+// ------------------------------------ 
+// Messages
+// ------------------------------------ 
+
+//--------------------------------goods--------------------------------
+message Goods {
+  int64 id = 1; //商品Id
+  string name = 2; //商品名称
+  double price = 3; //商品价格
+  string status = 4; //商品状态
+  int64 stock = 5; //商品库存
+  string comment = 6; //商品详情
+  string createdAt = 7; //创建时间
+  string deletedAt = 8; //删除时间
+  string updatedAt = 9; //修改时间
+}
+
+message AddGoodsReq {
+  string name = 1; //商品名称
+  double price = 2; //商品价格
+  string status = 3; //商品状态
+  int64 stock = 4; //商品库存
+  string comment = 5; //商品详情
+  string createdAt = 6; //创建时间
+  string deletedAt = 7; //删除时间
+  string updatedAt = 8; //修改时间
+}
+
+message AddGoodsResp {
+}
+
+message UpdateGoodsReq {
+  int64 id = 1; //商品Id
+  string name = 2; //商品名称
+  double price = 3; //商品价格
+  string status = 4; //商品状态
+  int64 stock = 5; //商品库存
+  string comment = 6; //商品详情
+  string createdAt = 7; //创建时间
+  string deletedAt = 8; //删除时间
+  string updatedAt = 9; //修改时间
+}
+
+message UpdateGoodsResp {
+}
+
+message DelGoodsReq {
+  int64 id = 1; //id
+}
+
+message DelGoodsResp {
+}
+
+message GetGoodsByIdReq {
+  int64 id = 1; //id
+}
+
+message GetGoodsByIdResp {
+  Goods goods = 1; //goods
+}
+
+message SearchGoodsReq {
+  int64 page = 1; //page
+  int64 limit = 2; //limit
+  int64 id = 3; //商品Id
+  string name = 4; //商品名称
+  double price = 5; //商品价格
+  string status = 6; //商品状态
+  int64 stock = 7; //商品库存
+  string comment = 8; //商品详情
+  string createdAt = 9; //创建时间
+  string deletedAt = 10; //删除时间
+  string updatedAt = 11; //修改时间
+}
+
+message SearchGoodsResp {
+  repeated Goods goods = 1; //goods
+}
+
+
+
+// ------------------------------------ 
+// Rpc Func
+// ------------------------------------ 
+
+service sel2pb{ 
+
+	 //-----------------------goods----------------------- 
+	 rpc AddGoods(AddGoodsReq) returns (AddGoodsResp); 
+	 rpc UpdateGoods(UpdateGoodsReq) returns (UpdateGoodsResp); 
+	 rpc DelGoods(DelGoodsReq) returns (DelGoodsResp); 
+	 rpc GetGoodsById(GetGoodsByIdReq) returns (GetGoodsByIdResp); 
+	 rpc SearchGoods(SearchGoodsReq) returns (SearchGoodsResp); 
+
+}
